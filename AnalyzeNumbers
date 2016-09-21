@@ -1,0 +1,426 @@
+//******************************************************************
+//  Analyzing a set of given numbers 
+//******************************************************************
+
+public class AnalyzeNumbers {
+  public static void main(String[] args) {
+    final int NUMBER_OF_ELEMENTS = 10;
+    double[] numbers = new double[NUMBER_OF_ELEMENTS];
+    double sum = 0;
+
+    java.util.Scanner input = new java.util.Scanner(System.in);
+    for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+      System.out.print("Enter a new number: ");
+      numbers[i] = input.nextDouble();
+      sum += numbers[i];
+    }
+    
+    double average = sum / NUMBER_OF_ELEMENTS;
+
+    int count = 0; // The number of elements above average
+    for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) 
+      if (numbers[i] > average)
+        count++;
+
+    System.out.println("Average is " + average);
+    System.out.println("Number of elements above the average "
+      + count);
+  }
+}
+
+
+-------------------
+
+//******************************************************************
+//  A test case to trace changes to an array's values
+//******************************************************************
+
+public class Test {
+  public static void main(String[] args) {
+    int[] values = new int[5];
+
+    for (int i = 1; i < 5; i++)
+      values[i] = i + values[i-1];
+    
+    values[0] = values[1] + values[4];
+
+    for (int i = 0; i < 5; ++i)
+       System.out.println("value " + (i+1) + ": " + values[i]);
+  }
+}
+
+
+-----------
+
+//******************************************************************
+//  Initializing Arrays with Input Values
+//******************************************************************
+
+public class ProcessArray1 {
+  public static void main(String[] args) {
+    final int NUMBER_OF_ELEMENTS = 5;
+    double[] numbers = new double[NUMBER_OF_ELEMENTS];
+
+    java.util.Scanner input = new java.util.Scanner(System.in);
+    System.out.print("Enter " + myList.length + " values: ");
+    for (int i = 0; i < myList.length; i++) 
+      myList[i] = input.nextDouble();
+
+
+    for (int i = 0; i < myList.length; i++) 
+      System.out.print(myList[i] + " ");
+    System.out.println();
+  }
+}
+
+
+---------------
+
+//****************************************************************
+//  Initializing Arrays with Random Values
+//****************************************************************
+
+public class ProcessArray2 {
+  public static void main(String[] args) {
+    final int NUMBER_OF_ELEMENTS = 5;
+    double[] myList = new double[NUMBER_OF_ELEMENTS];
+
+    java.util.Scanner input = new java.util.Scanner(System.in);
+    for (int i = 0; i < myList.length; i++) 
+      myList[i] = Math.random() * 100;
+
+
+    for (int i = 0; i < myList.length; i++) 
+      System.out.print(myList[i] + " ");
+    System.out.println();
+  }
+}
+
+
+---------------
+
+//****************************************************************
+//  Summing all Elements
+//****************************************************************
+
+public class ProcessArray3 {
+  public static void main(String[] args) {
+    final int NUMBER_OF_ELEMENTS = 5;
+    double[] myList = new double[NUMBER_OF_ELEMENTS];
+
+    java.util.Scanner input = new java.util.Scanner(System.in);
+    for (int i = 0; i < myList.length; i++) 
+      myList[i] = Math.random() * 100;
+
+
+    for (int i = 0; i < myList.length; i++) 
+      System.out.print(myList[i] + " ");
+    System.out.println();
+
+    double total = 0;
+    for (int i = 0; i < myList.length; i++)
+      total += myList[i];
+    System.out.println("The total is: " + total);
+
+  }
+}
+
+
+---------------
+
+//****************************************************************
+//  Random Shuffling
+//****************************************************************
+
+public class ProcessArray4 {
+  public static void main(String[] args) {
+    final int NUMBER_OF_ELEMENTS = 5;
+    double[] myList = new double[NUMBER_OF_ELEMENTS];
+
+    java.util.Scanner input = new java.util.Scanner(System.in);
+    System.out.print("Enter " + myList.length + " values: ");
+    for (int i = 0; i < myList.length; i++) 
+      myList[i] = input.nextDouble();
+
+    for (int i = 0; i < myList.length; i++) {
+      // Generate a random index
+      int index = (int) (Math.random() * myList.length);
+      
+      // Swap myList[i] with random index
+      double temp = myList[i];
+      myList[i] = myList[index];
+      myList[index] = temp;
+    }
+
+    for (int i = 0; i < myList.length; i++)
+      System.out.print(myList[i] + " ");
+    System.out.println();
+
+  }
+}
+
+
+---------------
+
+//******************************************************************
+//  Sending an array as an argument / receiving it as a parameter
+//******************************************************************
+
+public class TestPassArray1 {
+  public static void main(String[] args) {
+    int[] list = {3, 1, 2, 6, 4, 2};
+
+    printArray(list);
+  }
+
+  public static void printArray(int[] array) {
+    for (int i = 0; i < array.length; i++) {
+      System.out.print(array[i] + " ");
+    }
+  }
+}
+
+---------------
+
+//******************************************************************
+//  Sending an integer value and an array as arguments
+//    to test how Pass By Value works
+//******************************************************************
+
+public class TestPassByValue {
+  public static void main(String[] args) {
+    int x = 1; // x represents an int value
+    int[] y = new int[10]; // y represents an array of int values
+
+    changeValues(x, y); // Invoke m with arguments x and y
+
+    System.out.println("x is " + x);
+    System.out.println("y[0] is " + y[0]);
+  }
+
+  public static void changeValues(int number, int[] numbers) {
+    number = 1001; // Assign a new value to number
+    numbers[0] = 5555; // Assign a new value to numbers[0]
+  }
+}
+
+---------------
+
+//****************************************************************
+//  Showing pass-by-value and pass-by-reference in Java
+//****************************************************************
+
+public class TestPassArray2 {
+  /** Main method */
+  public static void main(String[] args) {
+    int[] a = {1, 2};
+
+    // Swap elements using the swap method
+    System.out.println("Before invoking swap");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+    swap(a[0], a[1]);
+    System.out.println("After invoking swap");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+
+    // Swap elements using the swapFirstTwoInArray method
+    System.out.println("Before invoking swapFirstTwoInArray");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+    swapFirstTwoInArray(a);
+    System.out.println("After invoking swapFirstTwoInArray");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+  }
+
+  /** Swap two variables */
+  public static void swap(int n1, int n2) {
+    int temp = n1;
+    n1 = n2;
+    n2 = temp;
+  }
+
+  /** Swap the first two elements in the array */
+  public static void swapFirstTwoInArray(int[] array) {
+    int temp = array[0];
+    array[0] = array[1];
+    array[1] = temp;
+  }
+}
+
+---------------
+
+//******************************************************************
+//  Sending an array as an argument / receiving it as a parameter
+//******************************************************************
+
+public class TestPassArray1 {
+  public static void main(String[] args) {
+    int[] list = {3, 1, 2, 6, 4, 2};
+
+    printArray(list);
+  }
+
+  public static void printArray(int[] array) {
+    for (int i = 0; i < array.length; i++) {
+      System.out.print(array[i] + " ");
+    }
+  }
+}
+
+---------------
+
+//******************************************************************
+//  Sending an integer value and an array as arguments
+//    to test how Pass By Value works
+//******************************************************************
+
+public class TestPassByValue {
+  public static void main(String[] args) {
+    int x = 1; // x represents an int value
+    int[] y = new int[10]; // y represents an array of int values
+
+    changeValues(x, y); // Invoke m with arguments x and y
+
+    System.out.println("x is " + x);
+    System.out.println("y[0] is " + y[0]);
+  }
+
+  public static void changeValues(int number, int[] numbers) {
+    number = 1001; // Assign a new value to number
+    numbers[0] = 5555; // Assign a new value to numbers[0]
+  }
+}
+
+---------------
+
+//****************************************************************
+//  Showing pass-by-value and pass-by-reference in Java
+//****************************************************************
+
+public class TestPassArray2 {
+  /** Main method */
+  public static void main(String[] args) {
+    int[] a = {1, 2};
+
+    // Swap elements using the swap method
+    System.out.println("Before invoking swap");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+    swap(a[0], a[1]);
+    System.out.println("After invoking swap");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+
+    // Swap elements using the swapFirstTwoInArray method
+    System.out.println("Before invoking swapFirstTwoInArray");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+    swapFirstTwoInArray(a);
+    System.out.println("After invoking swapFirstTwoInArray");
+    System.out.println("array is {" + a[0] + ", " + a[1] + "}");
+  }
+
+  /** Swap two variables */
+  public static void swap(int n1, int n2) {
+    int temp = n1;
+    n1 = n2;
+    n2 = temp;
+  }
+
+  /** Swap the first two elements in the array */
+  public static void swapFirstTwoInArray(int[] array) {
+    int temp = array[0];
+    array[0] = array[1];
+    array[1] = temp;
+  }
+}
+
+---------------
+
+//****************************************************************
+//  Testing returning an array in a method
+//****************************************************************
+
+public class TestReturnArray {
+  public static void main(String[] args) {
+    int[] list = {3, 1, 2, 6, 4, 2};
+    int[] list2 = null;
+
+    printArray(list);
+    list2 = reverse(list);
+    printArray(list);
+    printArray(list2);
+  }
+
+  public static int[] reverse(int[] list) {
+    int[] result = new int[list.length];
+
+    for (int i = 0, j = result.length - 1; i < list.length; i++, j--) {
+      result[j] = list[i];
+    }
+
+    return result;
+  }
+
+  public static void printArray(int[] array) {
+    for (int i = 0; i < array.length; i++) {
+      System.out.print(array[i] + " ");
+    }
+  }
+}
+
+---------------
+
+//****************************************************************
+//  Testing copying an array in a method
+//****************************************************************
+
+public class TestReturnArray2 {
+  public static void main(String[] args) {
+    int[] sourceArray = {2, 3, 1, 5, 10};
+    int[] targetArray = new int[sourceArray.length];
+
+    for (int i = 0; i < sourceArrays.length; i++)
+       targetArray[i] = sourceArray[i];
+    }
+
+    System.out.println("Source Array:");
+    for (int i = 0; i < sourceArray.length; i++) {
+      System.out.print(sourceArray [i] + " ");
+    }
+    System.out.println();
+
+    System.out.println("Target Array:");
+    for (int i = 0; i < targetArray.length; i++) {
+      System.out.print(targetArrayArray [i] + " ");
+    }
+    System.out.println();
+  }
+}
+
+---------------
+
+/****************************************************************
+//  Testing Variable Length Arguement Lists
+//****************************************************************
+
+public class VariableLengthAverage {
+  public static void main(String[] args) {
+    double mean1 = average(3, 1, 2, 6, 4, 2);
+    double mean2 = average(3, 1, 2, 6);
+
+    System.out.printf("The first average = %.2f\n", mean1);
+    System.out.printf("The second average = %.2f\n", mean2);
+  }
+
+  public double average (int ... list)
+  {
+    double result = 0.0;
+
+    if (list.length != 0)
+    {
+      int sum = 0;
+      for (int num : list)
+         sum += num;
+      result = (double)num / list.length;
+    }
+
+   return result;
+  }
+
+}
